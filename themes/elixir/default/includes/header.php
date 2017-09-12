@@ -49,12 +49,12 @@ header('X-Frame-Options: SAMEORIGIN');
 if(array_key_exists('header', $this->data)) {
 	echo $this->data['header'];
 } else {
-	echo 'SimpleSAMLphp';
+    echo 'SimpleSAMLphp';
 }
 ?></title>
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
-	<link rel="icon" type="image/icon" href="/<?php echo $this->data['baseurlpath']; ?>resources/icons/favicon.ico" />
+	<link rel="icon" type="image/icon" href="<?php echo SimpleSAML_Module::getModuleUrl('elixir/res/img/icons/favicon.ico'); ?>" />
 
 <?php
 
