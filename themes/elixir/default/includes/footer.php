@@ -21,7 +21,7 @@ if(!empty($this->data['htmlinject']['htmlContentPost'])) {
 			&nbsp; &nbsp; +44 (0)1223 492-670 &nbsp;
 			<a href="mailto:info@elixir-europe.org">info@elixir-europe.org</a>
 		</p>
-		<p>Copyright © ELIXIR 2015  | <a href="https://www.elixir-europe.org/legal/privacy">Privacy</a> |
+		<p>Copyright © ELIXIR <?php echo date("Y"); ?>  | <a href="https://www.elixir-europe.org/legal/privacy">Privacy</a> |
 			<a href="https://www.elixir-europe.org/legal/cookies">Cookies</a> |
 			<a href="https://www.elixir-europe.org/legal/terms-of-use">Terms of use</a>
 		</p>
