@@ -6,8 +6,8 @@ $this->data['head'] = <<<EOF
 <meta name="googlebot" content="noarchive, nofollow" />
 EOF;
 
-$this->data['head'] .= '<script src="' . SimpleSAML_Module::getModuleUrl('elixir/res/js/jquery.js')  . '" ></script>';
-$this->data['head'] .= '<script src="' . SimpleSAML_Module::getModuleUrl('elixir/res/bootstrap/js/bootstrap.min.js')  . '" ></script>';
+$this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleUrl('elixir/res/js/jquery.js')  . '" ></script>';
+$this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleUrl('elixir/res/bootstrap/js/bootstrap.min.js')  . '" ></script>';
 
 $this->includeAtTemplateBase('includes/header.php');
 ?>

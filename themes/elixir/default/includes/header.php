@@ -24,7 +24,7 @@ if (array_key_exists('pageid', $this->data)) {
 		'page' => $this->data['pageid']
 	);
 		
-	SimpleSAML_Module::callHooks('htmlinject', $hookinfo);	
+	SimpleSAML\Module::callHooks('htmlinject', $hookinfo);	
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 
@@ -54,7 +54,7 @@ if(array_key_exists('header', $this->data)) {
 ?></title>
 
 	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
-	<link rel="icon" type="image/icon" href="<?php echo SimpleSAML_Module::getModuleUrl('elixir/res/img/icons/favicon.ico'); ?>" />
+	<link rel="icon" type="image/icon" href="<?php echo SimpleSAML\Module::getModuleUrl('elixir/res/img/icons/favicon.ico'); ?>" />
 
 <?php
 
@@ -97,8 +97,8 @@ if ($this->isLanguageRTL()) {
 }
 ?>
 
-        <link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML_Module::getModuleUrl('elixir/res/bootstrap/css/bootstrap.min.css'); ?>" />
-        <link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML_Module::getModuleUrl('elixir/res/css/elixir.css'); ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML\Module::getModuleUrl('elixir/res/bootstrap/css/bootstrap.min.css'); ?>" />
+        <link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML\Module::getModuleUrl('elixir/res/css/elixir.css'); ?>" />
 	
 	<meta name="robots" content="noindex, nofollow" />
 	
@@ -129,7 +129,7 @@ if($onLoad !== '') {
 <div id="wrap">
 	
 	<div id="header">
-		<img src="<?php echo SimpleSAML_Module::getModuleUrl('elixir/res/img/logo_256.png'); ?>" alt="Elixir logo">
+		<img src="<?php echo SimpleSAML\Module::getModuleUrl('elixir/res/img/logo_256.png'); ?>" alt="Elixir logo">
 		<h1>
 		<?php 
 			echo (isset($this->data['header']) ? $this->data['header'] : 'Elixir proxy IdP');
