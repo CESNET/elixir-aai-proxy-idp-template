@@ -3,12 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>POST data</title>
+	<title><?php echo $this->t('{elixir:elixir:post}'); ?></title>
 </head>
 <body onload="document.getElementsByTagName('input')[0].click();">
 
 	<noscript>
-		<p><strong>Note:</strong> Since your browser does not support JavaScript, you must press the button below once to proceed.</p> 
+		<p><strong><?php echo $this->t('{elixir:elixir:note}'); ?></strong><?php echo $this->t('{elixir:elixir:browser_not_support_javascript}'); ?></p>
 	</noscript> 
 	
 	<form method="post" action="<?php echo htmlspecialchars($this->data['destination']); ?>">
@@ -62,7 +62,7 @@ foreach ($post as $name => $value) {
 ?>
 
 		<noscript>
-			<button type="submit" class="btn">Submit</button>
+			<button type="submit" class="btn"><?php echo $this->t('{elixir:elixir:submit}'); ?></button>
 		</noscript>
 	</form>
 
