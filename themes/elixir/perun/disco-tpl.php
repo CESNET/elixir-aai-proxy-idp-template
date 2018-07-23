@@ -25,13 +25,13 @@ $this->includeAtTemplateBase('includes/header.php');
 
 if (!empty($this->getPreferredIdp())) {
 
-	echo '<p class="descriptionp">your previous selection</p>';
+	echo '<p class="descriptionp">' . $this->t('{elixir:elixir:previous_selection}') . '?></p>';
 	echo '<div class="metalist list-group">';
 	echo showEntry($this, $this->getPreferredIdp(), true);
 	echo '</div>';
 
 
-	echo getOr();
+	echo getOr($this);
 }
 
 
@@ -51,7 +51,7 @@ echo '</div>';
 
 
 
-echo getOr();
+echo getOr($this);
 
 
 
@@ -80,9 +80,9 @@ echo '<br>';
 
 echo '<div class="no-idp-found alert alert-info">';
 if ($this->isOriginalSpNonFilteringIdPs()) {
-	echo 'Still can\'t find your institution? Contact us at <a href="mailto:aai-contact@elixir-europe.org?subject=Request%20for%20adding%20new%20IdP">aai-contact@elixir-europe.org</a>';
+	echo $this->t('{elixit:elixir:cannot_find_institution}') . '<a href="mailto:aai-contact@elixir-europe.org?subject=Request%20for%20adding%20new%20IdP">aai-contact@elixir-europe.org</a>';
 } else {
-	echo 'Can\'t find your institution? Select it in extended list and help us <a class="btn btn-primary" href="https://perun.elixir-czech.cz/add-institution/">add your institution</a>';
+	echo $this->t('{elixir:elixir:cannot_find_institution_extended}') . '<a class="btn btn-primary" href="https://perun.elixir-czech.cz/add-institution/">' . $this->t('{elixir:elixir:add_institution}') . '</a>';
 }
 echo '</div>';
 
@@ -174,9 +174,9 @@ function showIcon($metadata) {
 }
 
 
-function getOr() {
+function getOr($t) {
 	$or  = '<div class="hrline">';
-	$or .= '	<span>or</span>';
+	$or .= '	<span>' . $t->t('{elixir:elixir:or}') . '</span>';
 	$or .= '</div>';
 	return $or;
 }
