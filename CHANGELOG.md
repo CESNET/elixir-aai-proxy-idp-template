@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ 
+ ## [v1.0.2]
  [Changed]
  - Whole module now uses a dictionary
  
@@ -16,5 +18,6 @@
 - Changelog
 
 [Unreleased]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/master
+[v1.0.2]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.0.2
 [v1.0.1]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.0.1
 [v1.0.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.0.0
