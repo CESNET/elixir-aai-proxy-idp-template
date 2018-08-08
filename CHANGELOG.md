@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Changed]
+ - Changed the URL to AddInstitution App
  
  ## [v1.0.2]
  [Changed]
