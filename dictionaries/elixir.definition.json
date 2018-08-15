@@ -37,5 +37,8 @@
   },
   "post": {
     "en": "POST data"
+  },
+  "warning": {
+    "en": "Warning!"
   }
 }
