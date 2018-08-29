@@ -3,7 +3,20 @@
     "description": "A SimpleSAMLphp module providing template for DiscoPower and user-facing parts of the SSP for ELIXIR",
     "version": "1.2.0-dev",
     "type": "simplesamlphp-module",
+    "keywords": ["ELIXIR", "elixir", "simplesamlphp"],
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Pavel Vyskocil",
+            "email": "vyskocilpavel@muni.cz"
+        },
+        {
+            "name": "Michal Prochazka",
+            "email": "michalp@ics.muni.cz"
+        }
+    ],
     "require": {
-        "simplesamlphp/composer-module-installer": "~1.0"
+        "simplesamlphp/composer-module-installer": "~1.0",
+        "cesnet/simplesamlphp-module-perun": "~1.0.0"
     }
 }
