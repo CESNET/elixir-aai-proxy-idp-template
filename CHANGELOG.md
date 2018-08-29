@@ -5,6 +5,9 @@
  [Added]
 - Possibility to show a warning in disco-tpl
  
+ [Changed]
+ - Updated Readme
+ 
  ## [v1.1.0]
  [Changed]
  - Changed the URL to AddInstitution App
