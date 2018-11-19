@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Fixed]
+ - Fixed requirements in composer.json
  
  ## [v1.2.0]
  [Added]
