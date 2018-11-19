@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ 
+ ## [v1.2.1]
  [Fixed]
  - Fixed requirements in composer.json
  
@@ -31,6 +33,7 @@
 - Changelog
 
 [Unreleased]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/master
+[v1.2.1]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.2.1
 [v1.2.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.2.0
 [v1.1.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.1.0
 [v1.0.2]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.0.2
