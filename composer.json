@@ -16,7 +16,6 @@
         }
     ],
     "require": {
-        "simplesamlphp/composer-module-installer": "~1.0",
-        "cesnet/simplesamlphp-module-perun": "~1.0.0"
+        "simplesamlphp/composer-module-installer": "~1.0"
     }
 }
