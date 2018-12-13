@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Removed]
+ - Removed present_attributes() method from consentform.php
  
  ## [v1.2.1]
  [Fixed]
