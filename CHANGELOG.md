@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Added]
+ - Added support for MFA
  
  ## [v1.2.2]
  [Removed]

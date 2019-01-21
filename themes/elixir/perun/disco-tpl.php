@@ -23,11 +23,15 @@ const WARNING_USER_CAN_CONTINUE = 'userCanContinue';
 const WARNING_TITLE = 'title';
 const WARNING_TEXT = 'text';
 
+const MFA_IDENTIFIER = "https://refeds.org/profile/mfa";
+const MFA_IDP = "https://stepup.elixir-finland.org/idp/shibboleth";
+
 $warningIsOn = false;
 $warningUserCanContinue = null;
 $warningTitle = null;
 $warningText = null;
 $config = null;
+$authContextClassRef = null;
 
 try {
 	$config = SimpleSAML_Configuration::getConfig(WARNING_CONFIG_FILE_NAME);
@@ -68,8 +72,22 @@ if ($warningIsOn && !$warningUserCanContinue) {
 	$this->data['header'] = $this->t('{elixir:elixir:warning}');
 }
 
+if (isset($this->data['AuthnContextClassRef'])) {
+	$authContextClassRef = $this->data['AuthnContextClassRef'];
+}
+
 $this->includeAtTemplateBase('includes/header.php');
 
+if ($authContextClassRef != null) {
+	foreach ($authContextClassRef as $value) {
+		if (substr($value, 0, strlen(MFA_IDENTIFIER)) === MFA_IDENTIFIER) {
+			SimpleSAML\Logger::info("Redirecting to " . MFA_IDP);
+			$url = $this->getContinueUrl(MFA_IDP);
+			SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+			exit;
+		}
+	}
+}
 
 if ($warningIsOn) {
 	if($warningUserCanContinue) {
