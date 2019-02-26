@@ -76,65 +76,73 @@ if (isset($this->data['AuthnContextClassRef'])) {
 	$authContextClassRef = $this->data['AuthnContextClassRef'];
 }
 
-$this->includeAtTemplateBase('includes/header.php');
+# Do not show social IdPs when using addInstitutionApp, show just header Add Institution
+if ($this->isAddInstitutionApp()) {
+    // Translate title in header
+    $this->data['header'] = $this->t('{elixir:elixir:add_institution}');
+    $this->includeAtTemplateBase('includes/header.php');
+} else {
 
-if ($authContextClassRef != null) {
-	foreach ($authContextClassRef as $value) {
-		if (substr($value, 0, strlen(MFA_IDENTIFIER)) === MFA_IDENTIFIER) {
-			SimpleSAML\Logger::info("Redirecting to " . MFA_IDP);
-			$url = $this->getContinueUrl(MFA_IDP);
-			SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
-			exit;
+	$this->includeAtTemplateBase('includes/header.php');
+
+	if ($authContextClassRef != null) {
+		foreach ($authContextClassRef as $value) {
+			if (substr($value, 0, strlen(MFA_IDENTIFIER)) === MFA_IDENTIFIER) {
+				SimpleSAML\Logger::info("Redirecting to " . MFA_IDP);
+				$url = $this->getContinueUrl(MFA_IDP);
+				SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+				exit;
+			}
 		}
 	}
-}
 
-if ($warningIsOn) {
-	if($warningUserCanContinue) {
-		echo '<div class="alert alert-warning">';
-	} else {
-		echo '<div class="alert alert-danger">';
+	if ($warningIsOn) {
+		if ($warningUserCanContinue) {
+			echo '<div class="alert alert-warning">';
+		} else {
+			echo '<div class="alert alert-danger">';
+		}
+		echo '<h4> <strong>' . $warningTitle . '</strong> </h4>';
+		echo $warningText;
+		echo '</div>';
 	}
-	echo '<h4> <strong>' . $warningTitle . '</strong> </h4>';
-	echo $warningText;
-	echo '</div>';
+
+	if (!$warningIsOn || $warningUserCanContinue) {
+		if (!empty($this->getPreferredIdp())) {
+
+			echo '<p class="descriptionp">' . $this->t('{elixir:elixir:previous_selection}') . '</p>';
+			echo '<div class="metalist list-group">';
+			echo showEntry($this, $this->getPreferredIdp(), true);
+			echo '</div>';
+
+
+			echo getOr($this);
+		}
+
+
+        echo '<div class="row">';
+        foreach ($this->getIdps('social') AS $idpentry) {
+
+            echo '<div class="col-md-4">';
+            echo '<div class="metalist list-group">';
+            echo showEntry($this, $idpentry, false);
+            echo '</div>';
+            echo '</div>';
+
+        }
+        echo '</div>';
+
+
+        echo getOr($this);
+
+
+        echo '<p class="descriptionp">';
+        echo 'your institutional account';
+        echo '</p>';
+    }
 }
 
 if (!$warningIsOn || $warningUserCanContinue) {
-	if (!empty($this->getPreferredIdp())) {
-
-		echo '<p class="descriptionp">' . $this->t('{elixir:elixir:previous_selection}') . '</p>';
-		echo '<div class="metalist list-group">';
-		echo showEntry($this, $this->getPreferredIdp(), true);
-		echo '</div>';
-
-
-		echo getOr($this);
-	}
-
-
-
-    echo '<div class="row">';
-    foreach ($this->getIdps('social') AS $idpentry) {
-
-        echo '<div class="col-md-4">';
-        echo '<div class="metalist list-group">';
-        echo showEntry($this, $idpentry, false);
-        echo '</div>';
-        echo '</div>';
-
-    }
-    echo '</div>';
-
-
-
-    echo getOr($this);
-
-
-
-    echo '<p class="descriptionp">';
-    echo 'your institutional account';
-    echo '</p>';
 
     echo '<div class="inlinesearch">';
     echo '	<form id="idpselectform" action="?" method="get">
@@ -156,7 +164,7 @@ if (!$warningIsOn || $warningUserCanContinue) {
 
 
     echo '<div class="no-idp-found alert alert-info">';
-    if ($this->isOriginalSpNonFilteringIdPs()) {
+    if ($this->isAddInstitutionApp()) {
         echo $this->t('{elixir:elixir:cannot_find_institution}') . '<a href="mailto:aai-contact@elixir-europe.org?subject=Request%20for%20adding%20new%20IdP">aai-contact@elixir-europe.org</a>';
     } else {
         echo $this->t('{elixir:elixir:cannot_find_institution_extended}') . '<a class="btn btn-primary" href="https://login.elixir-czech.org/add-institution/">' . $this->t('{elixir:elixir:add_institution}') . '</a>';
