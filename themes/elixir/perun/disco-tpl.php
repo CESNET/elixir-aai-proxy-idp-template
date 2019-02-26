@@ -25,6 +25,9 @@ const WARNING_TEXT = 'text';
 
 const MFA_IDENTIFIER = "https://refeds.org/profile/mfa";
 const MFA_IDP = "https://stepup.elixir-finland.org/idp/shibboleth";
+const URN_CESNET_PROXYIDP_IDPENTITYID = "urn:cesnet:proxyidp:idpentityid:";
+
+$idpEntityId = null;
 
 $warningIsOn = false;
 $warningUserCanContinue = null;
@@ -90,6 +93,12 @@ if ($this->isAddInstitutionApp()) {
 			if (substr($value, 0, strlen(MFA_IDENTIFIER)) === MFA_IDENTIFIER) {
 				SimpleSAML\Logger::info("Redirecting to " . MFA_IDP);
 				$url = $this->getContinueUrl(MFA_IDP);
+				SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+				exit;
+			} elseif (substr($value, 0, strlen(URN_CESNET_PROXYIDP_IDPENTITYID)) === URN_CESNET_PROXYIDP_IDPENTITYID) {
+				$idpEntityId = substr($value, strlen(URN_CESNET_PROXYIDP_IDPENTITYID), strlen($value));
+				SimpleSAML\Logger::info("Redirecting to " . $idpEntityId);
+				$url = $this->getContinueUrl($idpEntityId);
 				SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 				exit;
 			}
