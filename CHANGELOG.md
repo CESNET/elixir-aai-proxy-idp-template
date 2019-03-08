@@ -5,6 +5,9 @@
  [Adeed]
  - Added file phpcs.xml
  
+ [Changed]
+ - Changed code style to PSR-2
+ 
  ## [v1.4.0]
  [Added]
  - Added support for pass selected IdP from SP in AuthnContextClassRef attribute.
