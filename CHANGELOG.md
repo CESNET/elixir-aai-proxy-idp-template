@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Adeed]
+ - Added file phpcs.xml
  
  ## [v1.4.0]
  [Added]
