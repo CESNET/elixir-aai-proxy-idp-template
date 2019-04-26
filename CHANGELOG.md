@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ 
+ ## [v2.0.0]
  [Adeed]
  - Added file phpcs.xml
  
@@ -60,6 +62,7 @@
 - Changelog
 
 [Unreleased]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/master
+[v2.0.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v2.0.0
 [v1.4.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.4.0
 [v1.3.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.3.0
 [v1.2.2]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.2.2
