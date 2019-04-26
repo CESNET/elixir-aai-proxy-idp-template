@@ -2,6 +2,11 @@
  All notable changes to this project will be documented in this file.
  
  ## [Unreleased]
+ [Adeed]
+ - Added file phpcs.xml
+ 
+ [Changed]
+ - Changed code style to PSR-2
  
  ## [v1.4.0]
  [Added]
