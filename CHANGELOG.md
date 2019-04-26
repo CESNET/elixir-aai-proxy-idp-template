@@ -8,6 +8,7 @@
  [Changed]
  - Changed code style to PSR-2
  - addInstitution URL nad email in disco-tpl.php are loaded from a config file
+ - Templates are included from module perun
  
  ## [v1.4.0]
  [Added]
