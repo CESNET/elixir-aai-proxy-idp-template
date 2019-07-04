@@ -1,64 +1,64 @@
 # Change Log
  All notable changes to this project will be documented in this file.
  
- ## [Unreleased]
+## [Unreleased]
  
- ## [v2.0.0]
- [Adeed]
- - Added file phpcs.xml
+## [v2.0.0]
+#### Added
+- Added file phpcs.xml
  
- [Changed]
- - Changed code style to PSR-2
- - addInstitution URL nad email in disco-tpl.php are loaded from a config file
- - Templates are included from module perun
+#### Changed
+- Changed code style to PSR-2
+- addInstitution URL nad email in disco-tpl.php are loaded from a config file
+- Templates are included from module perun
  
- ## [v1.4.0]
- [Added]
- - Added support for pass selected IdP from SP in AuthnContextClassRef attribute.
+## [v1.4.0]
+#### Added
+- Added support for pass selected IdP from SP in AuthnContextClassRef attribute.
    
     - It's required add this line into module_perun.php config file 
     <pre>
     'disco.removeAuthnContextClassRefPrefix' => 'urn:cesnet:proxyidp:',
     </pre> 
 
- [Changed]
- - Social Idps are not shown when adding institution
+#### Changed
+- Social Idps are not shown when adding institution
  
- ## [v1.3.0]
- [Added]
- - Added support for MFA
+## [v1.3.0]
+#### Added
+- Added support for MFA
  
- ## [v1.2.2]
- [Removed]
- - Removed present_attributes() method from consentform.php
+## [v1.2.2]
+#### Removed
+- Removed present_attributes() method from consentform.php
+
+## [v1.2.1]
+#### Fixed
+- Fixed requirements in composer.json
  
- ## [v1.2.1]
- [Fixed]
- - Fixed requirements in composer.json
- 
- ## [v1.2.0]
- [Added]
+## [v1.2.0]
+#### Added
 - Possibility to show a warning in disco-tpl
  
- [Changed]
- - Updated Readme
+#### Changed
+- Updated Readme
  
- ## [v1.1.0]
- [Changed]
- - Changed the URL to AddInstitution App
+## [v1.1.0]
+#### Changed
+- Changed the URL to AddInstitution App
  
- ## [v1.0.2]
- [Changed]
- - Whole module now uses a dictionary
+## [v1.0.2]
+#### Changed
+- Whole module now uses a dictionary
  
- ## [v1.0.1]
- [Changed]
- - Filling email is now required for reporting error
- - Changed help-block text for email in report error form
- - Fixed changelog
- 
- ## [v1.0.0]
-[Added]
+## [v1.0.1]
+#### Changed
+- Filling email is now required for reporting error
+- Changed help-block text for email in report error form
+- Fixed changelog
+
+## [v1.0.0]
+#### Added
 - Changelog
 
 [Unreleased]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/master
