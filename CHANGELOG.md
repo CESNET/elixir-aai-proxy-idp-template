@@ -2,6 +2,9 @@
  All notable changes to this project will be documented in this file.
  
 ## [Unreleased]
+#### Added
+- Added process filter for MFA using CSC MFA OIDC server
+ 
 #### Changed
 - Using of short array syntax ([] instead of array())
 - Using imports instead of qualified names
