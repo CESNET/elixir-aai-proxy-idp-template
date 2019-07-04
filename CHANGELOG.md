@@ -4,6 +4,7 @@
 ## [Unreleased]
 #### Changed
 - Using of short array syntax ([] instead of array())
+- Using imports instead of qualified names
 
 ## [v2.0.0]
 #### Added
