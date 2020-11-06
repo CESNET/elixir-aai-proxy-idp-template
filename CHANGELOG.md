@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
 ## [Unreleased]
+
+## [v2.2.0]
 #### Changed
 - Allow use SSP module Perun in version v4.x
 
@@ -73,6 +75,7 @@
 - Changelog
 
 [Unreleased]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/master
+[v2.2.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v2.2.0
 [v2.1.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v2.1.0
 [v2.0.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v2.0.0
 [v1.4.0]: https://github.com/elixirhub/elixir-aai-proxy-idp-template/tree/v1.4.0
