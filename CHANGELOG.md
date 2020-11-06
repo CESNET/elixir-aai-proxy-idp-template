@@ -2,6 +2,8 @@
  All notable changes to this project will be documented in this file.
  
 ## [Unreleased]
+#### Changed
+- Allow use SSP module Perun in version v4.x
 
 ## [v2.1.0]
 #### Added
