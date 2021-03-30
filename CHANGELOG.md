@@ -3,6 +3,10 @@
  
 ## [Unreleased]
 
+## [v2.3.0]
+#### Changed
+- Allow use SSP module Perun in version v4.0 or greater
+
 ## [v2.2.0]
 #### Changed
 - Allow use SSP module Perun in version v4.x
