@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use SimpleSAML\Module;
 
@@ -22,7 +22,7 @@ if (array_key_exists('pageid', $this->data)) {
         'post' => &$this->data['htmlinject']['htmlContentPost'],
         'head' => &$this->data['htmlinject']['htmlContentHead'],
         'jquery' => &$jquery,
-        'page' => $this->data['pageid']
+        'page' => $this->data['pageid'],
     ];
 
     Module::callHooks('htmlinject', $hookinfo);
@@ -30,13 +30,11 @@ if (array_key_exists('pageid', $this->data)) {
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 
 /**
- * Do not allow to frame SimpleSAMLphp pages from another location.
- * This prevents clickjacking attacks in modern browsers.
+ * Do not allow to frame SimpleSAMLphp pages from another location. This prevents clickjacking attacks in modern
+ * browsers.
  *
- * If you don't want any framing at all you can even change this to
- * 'DENY', or comment it out if you actually want to allow foreign
- * sites to put SimpleSAMLphp in a frame. The latter is however
- * probably not a good security practice.
+ * If you don't want any framing at all you can even change this to 'DENY', or comment it out if you actually want to
+ * allow foreign sites to put SimpleSAMLphp in a frame. The latter is however probably not a good security practice.
  */
 header('X-Frame-Options: SAMEORIGIN');
 
@@ -61,26 +59,26 @@ header('X-Frame-Options: SAMEORIGIN');
 
     <?php
 
-    if (!empty($jquery)) {
+    if (! empty($jquery)) {
         $version = '1.8';
         if (array_key_exists('version', $jquery)) {
             $version = $jquery['version'];
         }
 
-        if ($version == '1.8') {
+        if ($version === '1.8') {
             if (isset($jquery['core']) && $jquery['core']) {
-                echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] .
-                    'resources/jquery-1.8.js"></script>' . "\n");
+                echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] .
+                    'resources/jquery-1.8.js"></script>' . "\n";
             }
 
             if (isset($jquery['ui']) && $jquery['ui']) {
-                echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] .
-                    'resources/jquery-ui-1.8.js"></script>' . "\n");
+                echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] .
+                    'resources/jquery-ui-1.8.js"></script>' . "\n";
             }
 
             if (isset($jquery['css']) && $jquery['css']) {
-                echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] .
-                    'resources/uitheme1.8/jquery-ui.css" />' . "\n");
+                echo '<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] .
+                    'resources/uitheme1.8/jquery-ui.css" />' . "\n";
             }
         }
     }
@@ -90,7 +88,7 @@ header('X-Frame-Options: SAMEORIGIN');
             'resources/clipboard.min.js"></script>' . "\n";
     }
 
-    if (!empty($this->data['htmlinject']['htmlContentHead'])) {
+    if (! empty($this->data['htmlinject']['htmlContentHead'])) {
         foreach ($this->data['htmlinject']['htmlContentHead'] as $c) {
             echo $c;
         }
@@ -146,7 +144,7 @@ if ($onLoad !== '') {
         <img src="<?php echo Module::getModuleUrl('elixir/res/img/logo_256.png'); ?>" alt="Elixir logo">
         <h1>
             <?php
-            echo(isset($this->data['header']) ? $this->data['header'] : 'Elixir proxy IdP');
+            echo isset($this->data['header']) ? $this->data['header'] : 'Elixir proxy IdP';
             ?>
         </h1>
     </div>
@@ -155,7 +153,7 @@ if ($onLoad !== '') {
 
 <?php
 
-if (!empty($this->data['htmlinject']['htmlContentPre'])) {
+if (! empty($this->data['htmlinject']['htmlContentPre'])) {
     foreach ($this->data['htmlinject']['htmlContentPre'] as $c) {
         echo $c;
     }

@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * The config template for module ELIXIR
  */
-$config = array(
-
+$config = [
     /**
      * The clientId from CSC_MFA server
      */
@@ -23,6 +24,5 @@ $config = array(
     /**
      * The openid configuration url of CSC_MFA server
      */
-    'openidConfigurationUrl' => ''
-
-);
+    'openidConfigurationUrl' => '',
+];

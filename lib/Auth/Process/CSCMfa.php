@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\elixir\Auth\Process;
 
 use SimpleSAML\Auth\ProcessingFilter;
@@ -10,20 +13,30 @@ use SimpleSAML\Module;
 
 class CSCMfa extends ProcessingFilter
 {
-    const MFA_IDENTIFIER = 'https://refeds.org/profile/mfa';
-    const CONFIG_FILE_NAME = 'module_elixir.php';
+    public const MFA_IDENTIFIER = 'https://refeds.org/profile/mfa';
 
-    const CLIENT_ID = 'clientId';
-    const CLIENT_SECRET = 'clientSecret';
-    const REQUESTED_SCOPES = 'requestedScopes';
-    const OPENID_CONFIGURATION_URL = 'openidConfigurationUrl';
-    const AUTHORIZATION_ENDPOINT = 'authorization_endpoint';
-    const TOKEN_ENDPOINT = 'token_endpoint';
-    const USERINFO_ENDPOINT = 'userinfo_endpoint';
+    public const CONFIG_FILE_NAME = 'module_elixir.php';
+
+    public const CLIENT_ID = 'clientId';
+
+    public const CLIENT_SECRET = 'clientSecret';
+
+    public const REQUESTED_SCOPES = 'requestedScopes';
+
+    public const OPENID_CONFIGURATION_URL = 'openidConfigurationUrl';
+
+    public const AUTHORIZATION_ENDPOINT = 'authorization_endpoint';
+
+    public const TOKEN_ENDPOINT = 'token_endpoint';
+
+    public const USERINFO_ENDPOINT = 'userinfo_endpoint';
 
     private $clientId;
+
     private $requestedScopes;
+
     private $authorizationEndpoint;
+
     private $redirectUri;
 
     public function __construct($config, $reserved)
@@ -35,7 +48,7 @@ class CSCMfa extends ProcessingFilter
 
         $this->clientId = $conf->getString(self::CLIENT_ID, '');
         $this->requestedScopes = $conf->getArray(self::REQUESTED_SCOPES, []);
-        $openidConfigurationUrl =$conf->getString(self::OPENID_CONFIGURATION_URL, '');
+        $openidConfigurationUrl = $conf->getString(self::OPENID_CONFIGURATION_URL, '');
 
         if (empty($this->clientId)) {
             throw new Exception(
@@ -61,39 +74,37 @@ class CSCMfa extends ProcessingFilter
         $metadata = json_decode(file_get_contents($openidConfigurationUrl), true);
         $this->authorizationEndpoint = $metadata[self::AUTHORIZATION_ENDPOINT];
 
-        $this->redirectUri = Module::getModuleURL('elixir').'/CSCMfaContinue.php';
-
+        $this->redirectUri = Module::getModuleURL('elixir') . '/CSCMfaContinue.php';
     }
-
 
     public function process(&$request)
     {
         assert('is_array($request)');
 
-        $requestedAuthnContextClassRef = array();
+        $requestedAuthnContextClassRef = [];
 
         if (isset($request['saml:RequestedAuthnContext']['AuthnContextClassRef'])) {
             $requestedAuthnContextClassRef = $request['saml:RequestedAuthnContext']['AuthnContextClassRef'][0];
             if (! is_array($requestedAuthnContextClassRef)) {
-                $requestedAuthnContextClassRef = array($requestedAuthnContextClassRef);
+                $requestedAuthnContextClassRef = [$requestedAuthnContextClassRef];
             }
         }
 
-        if (!in_array(self::MFA_IDENTIFIER, $requestedAuthnContextClassRef)) {
+        if (! in_array(self::MFA_IDENTIFIER, $requestedAuthnContextClassRef, true)) {
             # Everything is OK, SP didn't requested MFA
             Logger::debug('Multi factor authentication is not required');
             return;
         }
 
         # Check if IdP did MFA
-        $authContextClassRef = array();
+        $authContextClassRef = [];
         if (isset($request['saml:sp:AuthnContext'])) {
             $authContextClassRef = $request['saml:sp:AuthnContext'];
-            if (!is_array($authContextClassRef)) {
-                $authContextClassRef = array($authContextClassRef);
+            if (! is_array($authContextClassRef)) {
+                $authContextClassRef = [$authContextClassRef];
             }
         }
-        if (in_array(self::MFA_IDENTIFIER, $authContextClassRef)) {
+        if (in_array(self::MFA_IDENTIFIER, $authContextClassRef, true)) {
             # MFA was performed on IdP
             Logger::debug('Multi factor authentication was performed on Identity provider side');
             return;
@@ -103,10 +114,8 @@ class CSCMfa extends ProcessingFilter
 
         $stateId = State::saveState($request, 'elixir:CSCMfa', true);
 
-        if (!isset($request['Attributes']['eduPersonUniqueId'][0])) {
-            throw new Exception(
-                'elixir:CSCMfa: missing required attribute "eduPersonUniqueId" in request'
-            );
+        if (! isset($request['Attributes']['eduPersonUniqueId'][0])) {
+            throw new Exception('elixir:CSCMfa: missing required attribute "eduPersonUniqueId" in request');
         }
         $elixirId = $request['Attributes']['eduPersonUniqueId'][0];
 
@@ -114,15 +123,15 @@ class CSCMfa extends ProcessingFilter
         $claims = [
             'id_token' => [
                 'sub' => [
-                    'value' => $stateId
+                    'value' => $stateId,
                 ],
                 'otp_key' => [
-                    'value' => $elixirId
-                ]
-            ]
+                    'value' => $elixirId,
+                ],
+            ],
         ];
 
-        if (isset( $request['Attributes']['mobile'][0])) {
+        if (isset($request['Attributes']['mobile'][0])) {
             $phoneNumber = $request['Attributes']['mobile'][0];
             $claims['id_token']['mobile']['value'] = $phoneNumber;
         }
@@ -137,12 +146,9 @@ class CSCMfa extends ProcessingFilter
             'claims' => json_encode($claims),
         ];
 
-        $mfa_url = $this->authorizationEndpoint . '?' .  http_build_query($params);
+        $mfa_url = $this->authorizationEndpoint . '?' . http_build_query($params);
 
         Header('Location: ' . $mfa_url);
         exit();
-
     }
 }
-
-?>

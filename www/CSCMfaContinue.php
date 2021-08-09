@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
-use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Module\elixir\Auth\Process\CSCMfa;
-
 
 $mfaTokenUrl = null;
 $mfaUserInfoUrl = null;
@@ -17,21 +17,24 @@ $clientId = $conf->getString(CSCMfa::CLIENT_ID, '');
 if (empty($clientId)) {
     throw new Exception(
         'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_ID .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'    );
+        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+    );
 }
 
 $clientSecret = $conf->getString(CSCMfa::CLIENT_SECRET, '');
 if (empty($clientSecret)) {
     throw new Exception(
         'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_SECRET .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'    );
+        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+    );
 }
 
 $openidConfigurationUrl = $conf->getString(CSCMfa::OPENID_CONFIGURATION_URL, '');
 if (empty($openidConfigurationUrl)) {
     throw new Exception(
         'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::TOKEN_ENDPOINT .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'    );
+        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+    );
 }
 
 $metadata = json_decode(file_get_contents($openidConfigurationUrl), true);
@@ -45,16 +48,16 @@ if (isset($metadata[CSCMfa::USERINFO_ENDPOINT])) {
 }
 
 if ($mfaTokenUrl === null || $mfaUserInfoUrl === null) {
-        throw new Exception(
+    throw new Exception(
         'elixir:CSCMfa_continue: Problem to get ' . CSCMfa::TOKEN_ENDPOINT . ' or ' .
-        CSCMfa::USERINFO_ENDPOINT . ' from Openid configuration.'   );
+        CSCMfa::USERINFO_ENDPOINT . ' from Openid configuration.'
+    );
 }
 
 $redirectUri = Module::getModuleURL('elixir') . '/CSCMfa_continue.php';
 
-if (!isset($_GET['code'], $_GET['state'] )) {
-    throw new Exception(
-        'elixir:CSCMfa_continue: One of following required params: "code", "state" is missing.');
+if (! isset($_GET['code'], $_GET['state'])) {
+    throw new Exception('elixir:CSCMfa_continue: One of following required params: "code", "state" is missing.');
 }
 
 $code = $_GET['code'];
@@ -94,9 +97,9 @@ if (isset($response['id_token'])) {
     $idToken = $response['id_token'];
 }
 
-$params = array(
+$params = [
     'access_token' => $accessToken,
-);
+];
 
 # Request to userinfo endpoint
 $ch = curl_init();
@@ -104,7 +107,7 @@ curl_setopt($ch, CURLOPT_URL, $mfaUserInfoUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $accessToken));
+curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
 
 if (($response = curl_exec($ch)) === false) {
     throw new \Exception("Request to token endpoint wasn't successful : " . curl_error($ch));
@@ -115,5 +118,3 @@ curl_close($ch);
 $state['saml:sp:AuthnContext'] = CSCMfa::MFA_IDENTIFIER;
 
 SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
-
-?>
