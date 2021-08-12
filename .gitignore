@@ -1,8 +1,8 @@
-# JetBrains files
-.idea/*
+.idea
+*.iml
+out
+gen
 
-# Composer files
-/vendor/
-/modules/
-composer.phar
+modules/
+vendor/
 composer.lock

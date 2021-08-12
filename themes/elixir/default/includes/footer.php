@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 use SimpleSAML\Module;
 
-if (!empty($this->data['htmlinject']['htmlContentPost'])) {
+if (! empty($this->data['htmlinject']['htmlContentPost'])) {
     foreach ($this->data['htmlinject']['htmlContentPost'] as $c) {
         echo $c;
     }
@@ -26,7 +26,7 @@ if (!empty($this->data['htmlinject']['htmlContentPost'])) {
                 &nbsp; &nbsp; +44 (0)1223 492-670 &nbsp;
                 <a href="mailto:info@elixir-europe.org">info@elixir-europe.org</a>
             </p>
-            <p>Copyright © ELIXIR <?php echo date("Y"); ?> |
+            <p>Copyright © ELIXIR <?php echo date('Y'); ?> |
                 <a href="https://www.elixir-europe.org/legal/privacy">Privacy</a> |
                 <a href="https://www.elixir-europe.org/legal/cookies">Cookies</a> |
                 <a href="https://www.elixir-europe.org/legal/terms-of-use">Terms of use</a>

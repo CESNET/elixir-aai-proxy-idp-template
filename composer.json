@@ -20,5 +20,8 @@
         "cesnet/simplesamlphp-module-perun": "~4.0",
         "ext-json": "*",
         "ext-curl": "*"
+    },
+    "require-dev": {
+        "symplify/easy-coding-standard": "^9.4"
     }
 }
