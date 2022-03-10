@@ -16,12 +16,17 @@
     ],
     "require": {
         "simplesamlphp/composer-module-installer": "~1.0",
-        "simplesamlphp/simplesamlphp": "~1.17",
-        "cesnet/simplesamlphp-module-perun": "~4.0",
+        "simplesamlphp/simplesamlphp": "~v1.19.0",
+        "cesnet/simplesamlphp-module-perun": "^v7.2.0",
         "ext-json": "*",
         "ext-curl": "*"
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^9.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "simplesamlphp/composer-module-installer": true
+        }
     }
 }
