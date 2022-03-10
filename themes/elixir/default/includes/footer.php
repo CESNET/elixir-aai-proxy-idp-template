@@ -2,7 +2,7 @@
 
 use SimpleSAML\Module;
 
-if (! empty($this->data['htmlinject']['htmlContentPost'])) {
+if (!empty($this->data['htmlinject']['htmlContentPost'])) {
     foreach ($this->data['htmlinject']['htmlContentPost'] as $c) {
         echo $c;
     }
@@ -18,7 +18,7 @@ if (! empty($this->data['htmlinject']['htmlContentPost'])) {
     <div style="margin: 0px auto; max-width: 1000px;">
 
         <div style="float: left;">
-            <img src="<?php echo Module::getModuleUrl('elixir/res/img/logo_64.png') ?>">
+            <img src="<?php echo Module::getModuleUrl('elixir/res/img/logo_64.png'); ?>">
         </div>
 
         <div style="float: left;">

@@ -16,24 +16,21 @@ $conf = Configuration::getConfig(CSCMfa::CONFIG_FILE_NAME);
 $clientId = $conf->getString(CSCMfa::CLIENT_ID, '');
 if (empty($clientId)) {
     throw new Exception(
-        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_ID .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_ID . '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
     );
 }
 
 $clientSecret = $conf->getString(CSCMfa::CLIENT_SECRET, '');
 if (empty($clientSecret)) {
     throw new Exception(
-        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_SECRET .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::CLIENT_SECRET . '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
     );
 }
 
 $openidConfigurationUrl = $conf->getString(CSCMfa::OPENID_CONFIGURATION_URL, '');
 if (empty($openidConfigurationUrl)) {
     throw new Exception(
-        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::TOKEN_ENDPOINT .
-        '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
+        'elixir:CSCMfa_continue: missing mandatory configuration option "' . CSCMfa::TOKEN_ENDPOINT . '" in configuration file "' . CSCMfa::CONFIG_FILE_NAME . '".'
     );
 }
 
@@ -47,16 +44,15 @@ if (isset($metadata[CSCMfa::USERINFO_ENDPOINT])) {
     $mfaUserInfoUrl = $metadata[CSCMfa::USERINFO_ENDPOINT];
 }
 
-if ($mfaTokenUrl === null || $mfaUserInfoUrl === null) {
+if (null === $mfaTokenUrl || null === $mfaUserInfoUrl) {
     throw new Exception(
-        'elixir:CSCMfa_continue: Problem to get ' . CSCMfa::TOKEN_ENDPOINT . ' or ' .
-        CSCMfa::USERINFO_ENDPOINT . ' from Openid configuration.'
+        'elixir:CSCMfa_continue: Problem to get ' . CSCMfa::TOKEN_ENDPOINT . ' or ' . CSCMfa::USERINFO_ENDPOINT . ' from Openid configuration.'
     );
 }
 
 $redirectUri = Module::getModuleURL('elixir') . '/CSCMfa_continue.php';
 
-if (! isset($_GET['code'], $_GET['state'])) {
+if (!isset($_GET['code'], $_GET['state'])) {
     throw new Exception('elixir:CSCMfa_continue: One of following required params: "code", "state" is missing.');
 }
 
@@ -65,7 +61,7 @@ $stateId = $_GET['state'];
 
 $state = State::loadState($stateId, 'elixir:CSCMfa');
 
-# Prepare params for token endpoint
+// Prepare params for token endpoint
 $params = [
     'code' => $code,
     'grant_type' => 'authorization_code',
@@ -75,7 +71,7 @@ $params = [
     'nonce' => time(),
 ];
 
-# Request to token endpoint
+// Request to token endpoint
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $mfaTokenUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -83,7 +79,7 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 $response = curl_exec($ch);
 
-if ($response === false) {
+if (false === $response) {
     throw new \Exception("Request to token endpoint wasn't successful : " . curl_error($ch));
 }
 $response = json_decode($response, true);
@@ -102,7 +98,7 @@ $params = [
     'access_token' => $accessToken,
 ];
 
-# Request to userinfo endpoint
+// Request to userinfo endpoint
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $mfaUserInfoUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -110,7 +106,7 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
 $response = curl_exec($ch);
-if ($response === false) {
+if (false === $response) {
     throw new \Exception("Request to token endpoint wasn't successful : " . curl_error($ch));
 }
 

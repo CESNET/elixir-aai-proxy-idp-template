@@ -52,22 +52,19 @@ class CSCMfa extends ProcessingFilter
 
         if (empty($this->clientId)) {
             throw new Exception(
-                'elixir:CSCMfa: missing mandatory configuration option "' . self::CLIENT_ID .
-                '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
+                'elixir:CSCMfa: missing mandatory configuration option "' . self::CLIENT_ID . '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
             );
         }
 
         if (empty($this->requestedScopes)) {
             throw new Exception(
-                'elixir:CSCMfa: missing mandatory configuration option "' . self::REQUESTED_SCOPES .
-                '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
+                'elixir:CSCMfa: missing mandatory configuration option "' . self::REQUESTED_SCOPES . '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
             );
         }
 
         if (empty($openidConfigurationUrl)) {
             throw new Exception(
-                'elixir:CSCMfa: missing mandatory configuration option "' . self::AUTHORIZATION_ENDPOINT .
-                '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
+                'elixir:CSCMfa: missing mandatory configuration option "' . self::AUTHORIZATION_ENDPOINT . '" in configuration file "' . self::CONFIG_FILE_NAME . '".'
             );
         }
 
@@ -85,28 +82,30 @@ class CSCMfa extends ProcessingFilter
 
         if (isset($request['saml:RequestedAuthnContext']['AuthnContextClassRef'])) {
             $requestedAuthnContextClassRef = $request['saml:RequestedAuthnContext']['AuthnContextClassRef'][0];
-            if (! is_array($requestedAuthnContextClassRef)) {
+            if (!is_array($requestedAuthnContextClassRef)) {
                 $requestedAuthnContextClassRef = [$requestedAuthnContextClassRef];
             }
         }
 
-        if (! in_array(self::MFA_IDENTIFIER, $requestedAuthnContextClassRef, true)) {
-            # Everything is OK, SP didn't requested MFA
+        if (!in_array(self::MFA_IDENTIFIER, $requestedAuthnContextClassRef, true)) {
+            // Everything is OK, SP didn't requested MFA
             Logger::debug('Multi factor authentication is not required');
+
             return;
         }
 
-        # Check if IdP did MFA
+        // Check if IdP did MFA
         $authContextClassRef = [];
         if (isset($request['saml:sp:AuthnContext'])) {
             $authContextClassRef = $request['saml:sp:AuthnContext'];
-            if (! is_array($authContextClassRef)) {
+            if (!is_array($authContextClassRef)) {
                 $authContextClassRef = [$authContextClassRef];
             }
         }
         if (in_array(self::MFA_IDENTIFIER, $authContextClassRef, true)) {
-            # MFA was performed on IdP
+            // MFA was performed on IdP
             Logger::debug('Multi factor authentication was performed on Identity provider side');
+
             return;
         }
 
@@ -114,12 +113,12 @@ class CSCMfa extends ProcessingFilter
 
         $stateId = State::saveState($request, 'elixir:CSCMfa', true);
 
-        if (! isset($request['Attributes']['eduPersonUniqueId'][0])) {
+        if (!isset($request['Attributes']['eduPersonUniqueId'][0])) {
             throw new Exception('elixir:CSCMfa: missing required attribute "eduPersonUniqueId" in request');
         }
         $elixirId = $request['Attributes']['eduPersonUniqueId'][0];
 
-        # Prepare claims
+        // Prepare claims
         $claims = [
             'id_token' => [
                 'sub' => [
@@ -136,7 +135,7 @@ class CSCMfa extends ProcessingFilter
             $claims['id_token']['mobile']['value'] = $phoneNumber;
         }
 
-        # Prepare params
+        // Prepare params
         $params = [
             'response_type' => 'code',
             'scope' => implode(' ', $this->requestedScopes),
@@ -148,7 +147,7 @@ class CSCMfa extends ProcessingFilter
 
         $mfa_url = $this->authorizationEndpoint . '?' . http_build_query($params);
 
-        Header('Location: ' . $mfa_url);
+        header('Location: ' . $mfa_url);
         exit();
     }
 }
