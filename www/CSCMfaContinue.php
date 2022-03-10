@@ -81,8 +81,9 @@ curl_setopt($ch, CURLOPT_URL, $mfaTokenUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+$response = curl_exec($ch);
 
-if (($response = curl_exec($ch)) === false) {
+if ($response === false) {
     throw new \Exception("Request to token endpoint wasn't successful : " . curl_error($ch));
 }
 $response = json_decode($response, true);
@@ -108,8 +109,8 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $accessToken]);
-
-if (($response = curl_exec($ch)) === false) {
+$response = curl_exec($ch);
+if ($response === false) {
     throw new \Exception("Request to token endpoint wasn't successful : " . curl_error($ch));
 }
 
