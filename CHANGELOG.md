@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v3.0.0...v3.0.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* 🐛 Fix name of loginForm file ([f988ea3](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/f988ea31422286335e7e3242b8841559b51c14d3))
+
 # 1.0.0 (2022-03-10)
 
 
