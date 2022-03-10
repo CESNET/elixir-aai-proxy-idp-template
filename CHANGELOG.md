@@ -1,3 +1,16 @@
+# 1.0.0 (2022-03-10)
+
+
+### Bug Fixes
+
+* 🐛 Fix ECS check ([0bc2d67](https://github.com/elixirhub/elixir-aai-proxy-idp-template/commit/0bc2d67acabf1d01c753c0dc12d89305807b6806))
+* 🐛 Fix ECS new style ([5eee8f3](https://github.com/elixirhub/elixir-aai-proxy-idp-template/commit/5eee8f302a7288835d8ca707b3ffb8385a35c298))
+
+
+### Features
+
+* privacyidea ([680a9ae](https://github.com/elixirhub/elixir-aai-proxy-idp-template/commit/680a9aea941bf91886c698476aea4fad99de0c42))
+
 # Change Log
  All notable changes to this project will be documented in this file.
  
