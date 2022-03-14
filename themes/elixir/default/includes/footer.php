@@ -10,31 +10,22 @@ if (!empty($this->data['htmlinject']['htmlContentPost'])) {
 
 ?>
 
-</div><!-- #content -->
-</div><!-- #wrap -->
-
-<div id="footer">
-
-    <div style="margin: 0px auto; max-width: 1000px;">
-
-        <div style="float: left;">
-            <img src="<?php echo Module::getModuleUrl('elixir/res/img/logo_64.png'); ?>">
+</div> <!-- ENDCARD_BODY -->
+</div> <!-- ENDCARD -->
+</div> <!-- ENDCOL -->
+</div> <!-- ENDROW -->
+<footer>
+    <div class="footer offset-1 col-10 offset-sm-1 col-sm-10 offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6">
+        <div class="footer-contact">
+            <a class="contact-link" href="mailto:support@aai.lifescience-ri.eu">Contact us</a>
         </div>
-
-        <div style="float: left;">
-            <p>ELIXIR, Wellcome Trust Genome Campus, Hinxton, Cambridgeshire, CB10 1SD, UK
-                &nbsp; &nbsp; +44 (0)1223 492-670 &nbsp;
-                <a href="mailto:info@elixir-europe.org">info@elixir-europe.org</a>
-            </p>
-            <p>Copyright © ELIXIR <?php echo date('Y'); ?> |
-                <a href="https://www.elixir-europe.org/legal/privacy">Privacy</a> |
-                <a href="https://www.elixir-europe.org/legal/cookies">Cookies</a> |
-                <a href="https://www.elixir-europe.org/legal/terms-of-use">Terms of use</a>
-            </p>
+        <div class="footer-policy">
+            <a class="footer-policy-link" href="https://lifescience-ri.eu/ls-login/ls-aai-aup.html">Privacy Policy</a>
         </div>
     </div>
-
-</div><!-- #footer -->
-
+</footer>
+<script type="text/javascript" src="<?php echo Module::getModuleURL('elixir/res/js/jquery-3.5.1.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo Module::getModuleURL('elixir/res/js/bootstrap.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo Module::getModuleURL('elixir/res/js/cmservice.js'); ?>"></script>
 </body>
 </html>
