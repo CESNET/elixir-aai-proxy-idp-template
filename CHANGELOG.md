@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v3.0.1...v4.0.0) (2022-03-14)
+
+
+### Features
+
+* 🎸 Remove CSC MFA related functionality ([329eb78](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/329eb784483b2b5fb2125e5b2971efffa26daf04))
+
+
+### BREAKING CHANGES
+
+* 🧨 Removed CSC MFA related functionality
+
 ## [3.0.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v3.0.0...v3.0.1) (2022-03-10)
 
 
