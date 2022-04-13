@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v4.0.0...v5.0.0) (2022-04-13)
+
+
+### Features
+
+* 🎸LS AAI design ([0042cc0](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/0042cc0b7747e7c43a3c3ab9c928f70c87d5743b))
+
+
+### BREAKING CHANGES
+
+* dropped ELIXIR design, using LS design from now on.
+
 # [4.0.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v3.0.1...v4.0.0) (2022-03-14)
 
 
