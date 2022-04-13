@@ -56,7 +56,7 @@ class ConsentHelper
         return 'in ' . $countryCodes[$jurisdiction];
     }
 
-    public static function printUserAttributes(array $attributes, $getTranslator)
+    public static function printUserAttributes(array $attributes, $translator)
     {
         $newAttributes = [];
         foreach ($attributes as $name => $value) {
@@ -64,10 +64,10 @@ class ConsentHelper
                 $newAttributes[$name] = $value;
             }
         }
-        ConsentHelper::printAttributes($newAttributes, $getTranslator);
+        ConsentHelper::printAttributes($newAttributes, $translator);
     }
 
-    public static function printTechnicalAttributes(array $attributes, $getTranslator)
+    public static function printTechnicalAttributes(array $attributes, $translator)
     {
         $newAttributes = [];
         foreach ($attributes as $name => $value) {
@@ -75,7 +75,7 @@ class ConsentHelper
                 $newAttributes[$name] = $value;
             }
         }
-        ConsentHelper::printAttributes($newAttributes, $getTranslator);
+        ConsentHelper::printAttributes($newAttributes, $translator);
     }
 
     public static function printAttributes($attributes, $translator)
