@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.1...v5.0.2) (2022-04-13)
+
+
+### Bug Fixes
+
+* 🐛 Added missing consent withdrawal contact ([fb8242d](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/fb8242d01a3d717274f43baad6cc6ea3ae384915))
+
 ## [5.0.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.0...v5.0.1) (2022-04-13)
 
 
