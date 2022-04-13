@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.0...v5.0.1) (2022-04-13)
+
+
+### Bug Fixes
+
+* 🐛 Fix consent collapse ([e34cf2e](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/e34cf2e947c01b259230afa606a4feb1f86983bb))
+
 # [5.0.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v4.0.0...v5.0.0) (2022-04-13)
 
 
