@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.2...v5.0.3) (2022-04-22)
+
+
+### Bug Fixes
+
+* 🐛 Fix privacyIdea template filename ([4265871](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/4265871040a57b1f7b2e8593b12b1c65a849f171))
+
 ## [5.0.2](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.1...v5.0.2) (2022-04-13)
 
 
