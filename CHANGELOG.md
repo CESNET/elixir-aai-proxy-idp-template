@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.3...v5.0.4) (2022-04-29)
+
+
+### Bug Fixes
+
+* 🐛 Fixed missing Head inject ([7f4bbd4](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/7f4bbd42c24bf7b8880cd971ed61ec6bc1ab19e2))
+
 ## [5.0.3](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.2...v5.0.3) (2022-04-22)
 
 
