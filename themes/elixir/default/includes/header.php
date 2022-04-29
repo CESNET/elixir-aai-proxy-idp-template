@@ -48,9 +48,21 @@ header('X-Frame-Options: SAMEORIGIN');
     <link href="<?php echo Module::getModuleUrl('elixir/res/css/cmservice.css'); ?>" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
     <title><?php echo (array_key_exists('header', $this->data)) ? $this->data['header'] : 'SimpleSAMLphp'; ?></title>
+    <?php
+    if (!empty($this->data['htmlinject']['htmlContentHead'])) {
+        foreach ($this->data['htmlinject']['htmlContentHead'] as $c) {
+            echo $c;
+        }
+    }
+    ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <?php
+    if (array_key_exists('head', $this->data)) {
+        echo '<!-- head -->' . $this->data['head'] . '<!-- /head -->';
+    }
+    ?>
 </head>
 <body>
 <div class="row">
