@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.0...v5.1.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* 🐛 Fix EMBL displaying of GDPR message in consent ([6b6cf1f](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/6b6cf1f9ab764319e97dacef6d6ae3dd7da0a385))
+
 # [5.1.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.4...v5.1.0) (2022-07-01)
 
 
