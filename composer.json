@@ -12,14 +12,20 @@
         {
             "name": "Michal Prochazka",
             "email": "michalp@ics.muni.cz"
+        },
+        {
+            "name": "Dominik Frantisek Bucik",
+            "email": "bucik@ics.muni.cz"
         }
     ],
     "require": {
         "simplesamlphp/composer-module-installer": "~1.0",
         "simplesamlphp/simplesamlphp": "~v1.19.0",
         "cesnet/simplesamlphp-module-perun": "^v7.2.0",
+        "cesnet/simplesamlphp-module-proxystatistics": "^v7.0.2",
         "ext-json": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "symplify/easy-coding-standard": "^9.4"

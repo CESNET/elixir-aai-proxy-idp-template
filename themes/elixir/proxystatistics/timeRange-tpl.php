@@ -1,0 +1,36 @@
+<?php declare(strict_types=1);
+
+?>
+<div class="timeRange">
+    <h3><?php echo $this->t('{proxystatistics:stats:select_time_range}'); ?></h3>
+    <form id="dateSelector" method="GET">
+        <?php
+        foreach (['tab', 'side', 'id'] as $var) {
+            if (isset($this->data[$var])) {
+                ?>
+                <input name="<?php echo $var; ?>" type="hidden"
+                    value="<?php echo htmlspecialchars(strval($this->data[$var])); ?>">
+                <?php
+            }
+        }
+        ?>
+        <?php
+        $values = [
+            0 => 'all',
+            7 => 'week',
+            30 => 'month',
+            90 => 'three_months',
+            365 => 'year',
+        ];
+        $i = 0;
+        ?>
+        <?php foreach ($values as $value => $str) { ?>
+            <label>
+                <input id="<?php echo $i; ?>" type="radio" name="lastDays" value="<?php echo $value; ?>"
+                        <?php echo $this->data['lastDays'] === $value ? 'checked=true' : ''; ?>>
+                <?php echo $this->t('{proxystatistics:stats:time_range_' . $str . '}'); ?>
+            </label>
+            <?php ++$i; ?>
+        <?php } ?>
+    </form>
+</div>
