@@ -49,8 +49,8 @@ class ConsentHelper
         if (empty($jurisdiction) || array_key_exists($jurisdiction, self::EU_EAA)) {
             return '';
         }
-        if ('INT' === $jurisdiction) {
-            return 'provided by an international organization.';
+        if ('INT' === $jurisdiction || 'EMBL' === $jurisdiction) {
+            return $jurisdiction;
         }
 
         return 'in ' . $countryCodes[$jurisdiction];
@@ -115,10 +115,18 @@ class ConsentHelper
     {
         if (!empty($parsedJurisdiction)) {
             echo '<div class="alert alert-danger" role="alert">' . PHP_EOL;
-            echo '    <h6>This service is ' . $parsedJurisdiction . '</h6>' . PHP_EOL;
-            echo '    <p>In order to access the requested services, the Life Science Login needs to transfer your personal data to a country outside EU/EEA. We cannot guarantee that this country offers an adequately high level of personal data protection as EU/EEA countries.</p>' . PHP_EOL;
+            if ($parsedJurisdiction === 'INT' || $parsedJurisdiction === 'EMBL') {
+                echo '    <h6>This service is provided by an international organization.</h6>' . PHP_EOL;
+            } else {
+                echo '    <h6>This service is ' . $parsedJurisdiction . '</h6>' . PHP_EOL;
+            }
+            if ($parsedJurisdiction === 'EMBL') {
+                echo '    <p>In order to access the requested services, the Life Science Login needs to transfer your personal data to an international organization outside EU/EEA jurisdictions.<br/><i>Please be aware that upon transfer your personal data will be protected by <a href="https://www.embl.org/documents/document/internal-policy-no-68-on-general-data-protection/" target="_blank">EMBL’s Internal Policy 68 on General Data Protection</a>.</i>' . PHP_EOL;
+            } else {
+                echo '    <p>In order to access the requested services, the Life Science Login needs to transfer your personal data to a country outside EU/EEA. We cannot guarantee that this country offers an adequately high level of personal data protection as EU/EEA countries.</p>' . PHP_EOL;
+            }
             if (false !== $spPrivacyPolicy) {
-                echo 'Please, read the <a target="_blank" href="' .$spPrivacyPolicy . '">Privacy Policy</a> of the service provider to learn more about its commitments to protect your data.' . PHP_EOL;
+                echo '<h6>Please, read the <a target="_blank" href="' .$spPrivacyPolicy . '">Privacy Policy</a> of the service provider to learn more about its commitments to protect your data.' . PHP_EOL;
             }
             echo '    <div class="form-check">' . PHP_EOL;
             echo '        <input class="form-check-input" type="checkbox" name="transfer" id="transfer" data-np-checked="1">' . PHP_EOL;
@@ -139,9 +147,10 @@ class ConsentHelper
 
     public static function printAcceptedTosWarning($dstMetadata)
     {
-        if (empty($dstMetadata['accepted_tos'])) {
+        if ((!empty($dstMetadata['test.sp']) && $dstMetadata['test.sp']) || empty($dstMetadata['accepted_tos'])) {
             echo '<div class="alert alert-warning" role="alert">' . PHP_EOL;
-            echo '    <h6>This service has not declared compliance with the <a target="_blank" href="https://lifescience-ri.eu/aai/terms-of-use">Terms of Use for service providers</a> that govern the service\'s use of Life Science Login.</h6>' . PHP_EOL;
+            echo '    <p>You are entering a service that is in the test environment of Life Science Login. The test environment is for service developers to test their relying service’s AAI integration before requesting to move them to the Life Science Login production environment.</p>' . PHP_EOL;
+            echo '    <p>The test environment is not intended for common users. You are able to access the service because you have opted in as a test user. You need to refresh your registration every 30 days.</p>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
         }
     }
