@@ -10,8 +10,6 @@ if (!empty($this->data['htmlinject']['htmlContentPost'])) {
 
 ?>
 
-</div> <!-- ENDCARD_BODY -->
-</div> <!-- ENDCARD -->
 </div> <!-- ENDCOL -->
 </div> <!-- ENDROW -->
 <footer>
