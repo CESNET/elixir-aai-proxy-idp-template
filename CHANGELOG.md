@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.4...v5.1.0) (2022-07-01)
+
+
+### Features
+
+* 🎸 Displaying statistics ([75f43c3](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/75f43c3a2ce44f1b886bbf743b37f5b478f9c945))
+
 ## [5.0.4](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.0.3...v5.0.4) (2022-04-29)
 
 
