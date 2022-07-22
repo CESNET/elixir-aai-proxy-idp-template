@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\elixir;
 use SimpleSAML\Auth\State;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Module\authswitcher\DiscoUtils;
 use SimpleSAML\Module\discopower\PowerIdPDisco;
 use SimpleSAML\Module\perun\Auth\Process\MultifactorAcrs;
 use SimpleSAML\Module\perun\model\WarningConfiguration;
@@ -97,7 +98,7 @@ class Disco extends PowerIdPDisco
                     $this->originalAuthnContextClassRef = $state[self::SAML_REQUESTED_AUTHN_CONTEXT][self::AUTHN_CONTEXT_CLASS_REF];
 
                     $this->removeAuthContextClassRefWithPrefixes($state);
-                    $this->prepareAcrsForMfa($state);
+                    DiscoUtils::setUpstreamRequestedAuthnContext($state);
                     if (isset($state['IdPMetadata']['entityid'])) {
                         $this->proxyIdpEntityId = $state['IdPMetadata']['entityid'];
                     }
@@ -215,11 +216,5 @@ class Disco extends PowerIdPDisco
         if (!empty($filteredAcrs)) {
             $state[self::SAML_REQUESTED_AUTHN_CONTEXT][self::STATE_AUTHN_CONTEXT_CLASS_REF] = $filteredAcrs;
         }
-    }
-
-    private function prepareAcrsForMfa(array &$state)
-    {
-        $contextsToAdd = $this->wayfConfiguration->getArray(self::ADD_AUTHN_CONTEXT_CLASSES_FOR_MFA, []);
-        MultifactorAcrs::addAndStoreAcrs($state, $contextsToAdd);
     }
 }
