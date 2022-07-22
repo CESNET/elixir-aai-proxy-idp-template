@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.1...v5.1.2) (2022-07-22)
+
+
+### Bug Fixes
+
+* **deps:** bump proxystats dependedcy to v8.0.0 and higher ([c7cd1f2](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/c7cd1f2bd439887c77da7b591b00f9defaccf286))
+
 ## [5.1.1](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.0...v5.1.1) (2022-07-01)
 
 
