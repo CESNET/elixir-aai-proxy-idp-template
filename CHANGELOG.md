@@ -1,3 +1,10 @@
+## [5.1.4](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.3...v5.1.4) (2022-07-22)
+
+
+### Bug Fixes
+
+* 🐛 Fix disco to work with perun module ([cd894a2](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/cd894a2ecc75867d1c2c0bcd3a9c0af9e31ffd53))
+
 ## [5.1.3](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.2...v5.1.3) (2022-07-22)
 
 
