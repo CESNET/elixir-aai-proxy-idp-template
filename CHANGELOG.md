@@ -1,3 +1,10 @@
+## [5.1.3](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.2...v5.1.3) (2022-07-22)
+
+
+### Bug Fixes
+
+* **deps:** upgrade module perun to v 9+ ([bb15e84](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/bb15e8487553fc38e500b9241a2a09eb16260ea8))
+
 ## [5.1.2](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.1...v5.1.2) (2022-07-22)
 
 
