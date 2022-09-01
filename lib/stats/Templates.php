@@ -97,7 +97,7 @@ class Templates
         }
         $t->data['head'] .= Utils::metaData('translations', $translations);
 
-        $name = $dbCmd->getNameById($side, $id);
+        $name = $dbCmd->getEntityNameByEntityIdentifier($side, $id);
         $t->data['header'] = $t->t('{proxystatistics:stats:' . $side . 'Detail_header_name}') . $name;
 
         $t->data['side'] = $side;
