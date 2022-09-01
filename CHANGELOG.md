@@ -1,3 +1,10 @@
+## [5.1.5](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.4...v5.1.5) (2022-09-01)
+
+
+### Bug Fixes
+
+* 🐛 Fix wrong method call to DBcmd ([5cfb479](https://github.com/CESNET/elixir-aai-proxy-idp-template/commit/5cfb47937d2e7f4d79734ae10e25dbb56abd2526))
+
 ## [5.1.4](https://github.com/CESNET/elixir-aai-proxy-idp-template/compare/v5.1.3...v5.1.4) (2022-07-22)
 
 
