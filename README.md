@@ -5,6 +5,8 @@
 [![Build and CI](https://github.com/elixirhub/elixir-aai-proxy-idp-template/actions/workflows/build_and_check.yml/badge.svg)](https://github.com/elixirhub/elixir-aai-proxy-idp-template/actions/workflows/build_and_check.yml)
 [![License](https://poser.pugx.org/elixir/simplesamlphp-module-elixir/license)](https://packagist.org/packages/elixir/simplesamlphp-module-elixir)
 
+**REPOSITORY HAS BEEN MOVED TO: https://gitlab.ics.muni.cz/perun-proxy-aai/simplesamlphp/simplesamlphp-module-elixir**
+
 Template for ELIXIR AAI Proxy IdP component
 
 
